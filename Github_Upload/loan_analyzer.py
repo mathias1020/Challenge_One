@@ -87,7 +87,7 @@ print(remaining_months)
 
 # YOUR CODE HERE!
 
-present_value = future_value / (1 + (0.2 / 12)) ** 9
+present_value = future_value / (1 + (0.2 / 12)) ** remaining_months
 print(present_value)
 
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
