@@ -20,7 +20,7 @@ loan_costs = [500, 600, 200, 1000, 450]
 # YOUR CODE HERE!
 
 total_number_of_loans = len(loan_costs)
-print(total_number_of_loans)
+print(f"Total Number of Loans in List: {total_number_of_loans}")
 
 # What is the total of all loans?
 # @TODO: Use the `sum` function to calculate the total of all loans in the list.
@@ -28,15 +28,15 @@ print(total_number_of_loans)
 # YOUR CODE HERE!
 
 sum_of_loans = sum(loan_costs)
-print(sum_of_loans)
+print(f"Total of Loan Costs: {sum_of_loans}")
 
 # What is the average loan amount from the list?
 # @TODO: Using the sum of all loans and the total number of loans, calculate the average loan price.
 # Print the average loan amount
 # YOUR CODE HERE!
 
-average_loan_amount = sum_of_loans / total_number_of_loans
-print(average_loan_amount)
+average_loan_price = sum_of_loans / total_number_of_loans
+print(f"Average Loan Price: {average_loan_price}")
 
 """Part 2: Analyze Loan Data.
 
@@ -74,10 +74,10 @@ loan = {
 # YOUR CODE HERE!
 
 future_value = loan.get("future_value")
-print(future_value)
+print(f"Future Value: {future_value}")
 
 remaining_months = loan.get("remaining_months")
-print(remaining_months)
+print(f"Remaining Months: {remaining_months}")
 
 
 # @TODO: Use the formula for Present Value to calculate a "fair value" of the loan.
@@ -88,7 +88,6 @@ print(remaining_months)
 # YOUR CODE HERE!
 
 present_value = future_value / (1 + (0.2 / 12)) ** remaining_months
-print(present_value)
 
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
 # @TODO: Write a conditional statement (an if-else statement) to decide if the present value represents the loan's fair value.
@@ -97,9 +96,9 @@ print(present_value)
 # YOUR CODE HERE!
 
 if present_value >= loan.get("loan_price"):
-    print("The loan is worth at least the cost to buy it.")
+    print(f"With a fair value of {present_value}, the loan is worth at least the cost to buy it.")
 else:
-    print("The loan is too expensive and not worth the price.")
+    print(f"With a fair value of {present_value}, the loan is too expensive and not worth the price.")
 
 """Part 3: Perform Financial Calculations.
 
@@ -221,3 +220,14 @@ output_path = Path("inexpensive_loans.csv")
 # @TODO: Use the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
 # YOUR CODE HERE!
+
+with open("inexpensive_loans.csv", "w", newline = '') as csvfile:
+    loan_writer = csv.writer(csvfile)
+    loan_writer.writerow(header)
+    for loan in inexpensive_loans:
+        loan_writer.writerow(loan.values())
+
+with open("inexpensive_loans.csv") as csvfile:
+    data = csv.reader(csvfile)
+    for row in data:
+        print(row)
